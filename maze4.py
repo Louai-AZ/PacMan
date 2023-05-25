@@ -1,10 +1,17 @@
 from solver2 import getMaze, getPath
+
 import pygame
+
 pygame.init()
+
 screen = pygame.display.set_mode((954,901))
+
 pygame.display.set_caption("Pacman")
+
 icon = pygame.image.load('sprites/pacman.png')
+
 pygame.display.set_icon(icon)
+
 pacmanX = 53
 pacmanY = 53
 pacman = pygame.image.load('sprites/pacman.png')
@@ -19,6 +26,7 @@ green_door = pygame.image.load('sprites/green_door.png')
 green_key = pygame.image.load('sprites/green_key.png')
 blue_door = pygame.image.load('sprites/blue_door.png')
 blue_key = pygame.image.load('sprites/blue_key.png')
+
 ghost = pygame.image.load('sprites/ghost.png')
 pinkCell = pygame.image.load('sprites/pink_cell.png')
 
@@ -35,14 +43,27 @@ def createOpenSpace(x=53,y=53):
 # def createGhost(x=0,y=0):
 #     screen.blit(wall, (x,y))
 
+# def createPinkCell(x=0,y=0):
+#     screen.blit(openSpace, (x,y))
+
 def player(x=53,y=53):
     screen.blit(pacman, (x, y))
 
 
-maze = getMaze('Maze4.txt')
+
+maze = getMaze('Maze3.txt')
+# path = pathFinder()
 path = getPath()
 
-print(maze)  #--------------------------------------------
+
+
+print('\n' ,' --------------------------  Maze -------------------------- :')
+print(maze)
+print(' ------------------')
+
+print('\n' ,' --------------------------  path -------------------------- :')
+print(path)
+print(' ------------------')
 
 
 mission_accomplished = False
@@ -54,31 +75,30 @@ while showWindow:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             showWindow = False
-    
+
     for i in range(len(maze)):
         for j in range(len(maze[i])):
             if maze[i][j] == '1':
                 createWall(j*53, i*53)
             if maze[i][j] == '0':
                 createOpenSpace(j*53, i*53)
-            # if maze[i][j] == '-1':
-            #     createPinkCell(j*53, i*53)
+            if maze[i][j] == '-1':
+                createPinkCell(j*53, i*53)
 
     if not mission_accomplished:
-        screen.blit(reward, (848,265))
+        screen.blit(reward, (848,265))  
         screen.blit(yellow_door, (318,424))
         screen.blit(yellow_key, (53,795))
-        screen.blit(blue_door, (371,212))
+        screen.blit(red_door, (371,212))
         screen.blit(red_key, (583,795))
-        screen.blit(green_door, (318,689))
+        screen.blit(green_door, (318,689))    
         screen.blit(green_key, (424,318))
         screen.blit(blue_door, (795,212))
         screen.blit(blue_key, (689,742))
-        
-        # screen.blit(ghost, (795,689))
-        # screen.blit(ghost, (689,265))
-        # screen.blit(ghost, (371,795))
-        
+        screen.blit(ghost, (795,689))
+        screen.blit(ghost, (689,265))
+        screen.blit(ghost, (371,795))
+
         for i in range(1,len(path)):
             newX = (path[i][0])*53
             newY = (path[i][1])*53
@@ -102,12 +122,3 @@ while showWindow:
             pygame.display.update()
     
     mission_accomplished = True
-
-
-
-
-
-
-
-
-
