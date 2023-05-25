@@ -173,49 +173,29 @@ def getMaze(filename):
     print(ghost_locator)
     print(' ------------------')
 
-    for ghost in ghost_locator:       
-        for i in range(1,ghost[2]):
-            if ghost[1]+i < maze_dim[1] and maze[ghost[0]][ghost[1]+i] == '0':
-                maze[ghost[0]][ghost[1]+i] = '-1'
-            elif ghost[1]+i < maze_dim[1] and maze[ghost[0]][ghost[1]+i] == '1':
-                break
-        for i in range(1,ghost[2]):
-            if ghost[1]-i >= 0 and maze[ghost[0]][ghost[1]-i] == '0':
-                maze[ghost[0]][ghost[1]-i] = '-1'
-            elif ghost[1]-i >= 0 and maze[ghost[0]][ghost[1]-i] == '1':
-                break
-        for i in range(1,ghost[2]):
-            if ghost[0]+i < maze_dim[0] and maze[ghost[0]+i][ghost[1]] == '0':
-                maze[ghost[0]+i][ghost[1]] = '-1'
-            elif ghost[0]+i < maze_dim[0] and maze[ghost[0]+i][ghost[1]] == '1':
-                break
-        for i in range(1,ghost[2]):
-            if ghost[0]-i >= 0 and maze[ghost[0]-i][ghost[1]] == '0':
-                maze[ghost[0]-i][ghost[1]] = '-1'
-            elif ghost[0]-i >= 0 and maze[ghost[0]-i][ghost[1]] == '1':
-                break
-
-        for i in range(1,ghost[2]):
-            if ghost[0]+i < maze_dim[0] and ghost[1]+i < maze_dim[1] and (maze[ghost[0]+i][ghost[1]+i] == '1' or maze[ghost[0]][ghost[1]+i] == '1' or maze[ghost[0]+i][ghost[1]] == '1'):
-                break
-            elif ghost[0]+i < maze_dim[0] and ghost[1]+i < maze_dim[1] and maze[ghost[0]+i][ghost[1]+i] == '0':
-                maze[ghost[0]+i][ghost[1]+i] = '-1'
-        for i in range(1,ghost[2]):
-            if ghost[0]-i >= 0 and ghost[1]-i >= 0 and (maze[ghost[0]-i][ghost[1]-i] == '1' or maze[ghost[0]][ghost[1]-i] == '1' or maze[ghost[0]-i][ghost[1]] == '1'):
-                break
-            elif ghost[0]-i >= 0 and ghost[1]-i >= 0 and maze[ghost[0]-i][ghost[1]-i] == '0':
-                maze[ghost[0]-i][ghost[1]-i] = '-1'
-        for i in range(1,ghost[2]):
-            if ghost[0]-i >= 0 and ghost[1]+i < maze_dim[1] and (maze[ghost[0]-i][ghost[1]+i] == '1' or maze[ghost[0]][ghost[1]+i] == '1' or maze[ghost[0]-i][ghost[1]] == '1'):
-                break
-            elif ghost[0]-i >= 0 and ghost[1]+i < maze_dim[1] and maze[ghost[0]-i][ghost[1]+i] == '0':
-                maze[ghost[0]-i][ghost[1]+i] = '-1'
-        for i in range(1,ghost[2]):
-            if ghost[0]+i < maze_dim[0] and ghost[1]-i >= 0 and (maze[ghost[0]+i][ghost[1]-i] == '1' or maze[ghost[0]][ghost[1]-i] == '1' or maze[ghost[0]+i][ghost[1]] == '1'):
-                break
-            elif ghost[0]+i < maze_dim[0] and ghost[1]-i >= 0 and maze[ghost[0]+i][ghost[1]-i] == '0':
-                maze[ghost[0]+i][ghost[1]-i] = '-1'                       
-                
+    for ghost in ghost_locator:
+        maze[ghost[0]][ghost[1]]='-1'
+            # check for right movemenent
+        if ghost[1]+1 < maze_dim[1] and maze[ghost[0]][ghost[1]+1] == '0':
+            maze[ghost[0]][ghost[1]+1] = '-1'
+        elif ghost[1]+1 < maze_dim[1] and maze[ghost[0]][ghost[1]+1] == '1':
+            break
+        #check for left mouvemenet
+        if ghost[1]-1 >= 0 and maze[ghost[0]][ghost[1]-1] == '0':
+            maze[ghost[0]][ghost[1]-i] = '-1'
+        elif ghost[1]-1 >= 0 and maze[ghost[0]][ghost[1]-1] == '1':
+            break
+        #check for up mouvement
+        if ghost[0]+1 < maze_dim[0] and maze[ghost[0]+1][ghost[1]] == '0':
+            maze[ghost[0]+1][ghost[1]] = '-1'
+        elif ghost[0]+1 < maze_dim[0] and maze[ghost[0]+1][ghost[1]] == '1':
+            break
+        #check for down mouvement 
+        if ghost[0]-1 >= 0 and maze[ghost[0]-1][ghost[1]] == '0':
+            maze[ghost[0]-1][ghost[1]] = '-1'
+        elif ghost[0]-1 >= 0 and maze[ghost[0]-1][ghost[1]] == '1':
+            break
+    return maze
     print(' --------------------------  LOCATOR -------------------------- :')
     print(locator)
     print(' ------------------')
