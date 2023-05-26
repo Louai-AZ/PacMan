@@ -40,8 +40,8 @@ def createPinkCell(x=0,y=0):
 def createOpenSpace(x=53,y=53):
     screen.blit(openSpace, (x,y))
 
-# def createGhost(x=0,y=0):
-#     screen.blit(wall, (x,y))
+def createGhost(x,y):
+    screen.blit(ghost, (x,y))
 
 # def createPinkCell(x=0,y=0):
 #     screen.blit(openSpace, (x,y))
@@ -51,7 +51,7 @@ def player(x=53,y=53):
 
 
 
-maze = getMaze('Maze3.txt')
+maze = getMaze('Maze4.txt')
 # path = pathFinder()
 path = getPath()
 
@@ -84,6 +84,9 @@ while showWindow:
                 createOpenSpace(j*53, i*53)
             if maze[i][j] == '-1':
                 createPinkCell(j*53, i*53)
+            # if maze[i][j].isnumeric() and int(maze[i][j]) > 1:
+            #     createGhost(j*53, i*53)
+
 
     if not mission_accomplished:
         screen.blit(reward, (848,265))  
@@ -95,6 +98,7 @@ while showWindow:
         screen.blit(green_key, (424,318))
         screen.blit(blue_door, (795,212))
         screen.blit(blue_key, (689,742))
+        
         screen.blit(ghost, (795,689))
         screen.blit(ghost, (689,265))
         screen.blit(ghost, (371,795))
