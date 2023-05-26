@@ -35,8 +35,6 @@ class analyseMaze():
 
 
 def pathFinder(start,end):
-        # start = locator['s'].copy()  # start_point  = [1, 1]
-        # end = locator['e'].copy()  # end_point = [5 , 16]
         obj = analyseMaze(start, end)  # start = [ x , y , cout ]  / end = [ x , y ]
         unvisitedNodes = [[obj, 0, [start[:2].copy()]]]   # unvisitedNodes = [  [  (start , end) ,  0  ,  [x,y]  ] , ]
         visitedNodes = []
@@ -61,7 +59,6 @@ def pathFinder(start,end):
             visitedNodes.append(unvisitedNodes[selected_node])  #  ne5dhou el  node edhika ( loula f f ) eli heya tete mt3 OUVERT 
             del unvisitedNodes[selected_node]  #  nfas5oha node edhika men OUvert  
             
-#***********************************************************************************************************************
             for n in neighbours:
                 cObj = analyseMaze(n, end)  # n = [ x , y , cout ]  / end = [ x , y ]
                 parent = f[0][0][2].copy() #  [x , y] mt3 eli 9balha
@@ -77,11 +74,8 @@ def pathFinder(start,end):
             # if i > 36:
             #     break
             if not len(unvisitedNodes):
-                break   
+                break  
             
-#***********************************************************************************************************************
-
-
 
 def getPath():
     start_point = locator['s'].copy()  # start_point  = [1, 1]

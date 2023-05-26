@@ -43,16 +43,12 @@ def createOpenSpace(x=53,y=53):
 def createGhost(x,y):
     screen.blit(ghost, (x,y))
 
-# def createPinkCell(x=0,y=0):
-#     screen.blit(openSpace, (x,y))
-
 def player(x=53,y=53):
     screen.blit(pacman, (x, y))
 
 
 
 maze = getMaze('Maze4.txt')
-# path = pathFinder()
 path = getPath()
 
 
@@ -80,29 +76,35 @@ while showWindow:
         for j in range(len(maze[i])):
             if maze[i][j] == '1':
                 createWall(j*53, i*53)
-            if maze[i][j] == '0':
+            elif maze[i][j] == '0':
                 createOpenSpace(j*53, i*53)
-            if maze[i][j] == '-1':
+            elif maze[i][j] == '-1':
                 createPinkCell(j*53, i*53)
-            # if maze[i][j].isnumeric() and int(maze[i][j]) > 1:
-            #     createGhost(j*53, i*53)
+            elif maze[i][j].isnumeric() and int(maze[i][j]) > 1:
+                createGhost(j*53, i*53)
+                
+            elif maze[i][j] == 'g':
+                screen.blit(red_door, (j*53, i*53))
+            elif maze[i][j] == 'f':
+                screen.blit(red_key, (j*53, i*53))
+            elif maze[i][j] == 'd':
+                screen.blit(green_key, (j*53, i*53))
+            elif maze[i][j] == 'c':
+                screen.blit(green_door, (j*53, i*53))
+            elif maze[i][j] == 'i':
+                screen.blit(blue_door, (j*53, i*53))
+            elif maze[i][j] == 'h':
+                screen.blit(blue_key, (j*53, i*53))
+            elif maze[i][j] == 'e':
+                screen.blit(reward, (j*53, i*53))    
+            elif maze[i][j] == 'b':
+                screen.blit(yellow_door, (j*53, i*53))
+            elif maze[i][j] == 'a':
+                screen.blit(yellow_key, (j*53, i*53))
+                
 
 
     if not mission_accomplished:
-        screen.blit(reward, (848,265))  
-        screen.blit(yellow_door, (318,424))
-        screen.blit(yellow_key, (53,795))
-        screen.blit(red_door, (371,212))
-        screen.blit(red_key, (583,795))
-        screen.blit(green_door, (318,689))    
-        screen.blit(green_key, (424,318))
-        screen.blit(blue_door, (795,212))
-        screen.blit(blue_key, (689,742))
-        
-        screen.blit(ghost, (795,689))
-        screen.blit(ghost, (689,265))
-        screen.blit(ghost, (371,795))
-
         for i in range(1,len(path)):
             newX = (path[i][0])*53
             newY = (path[i][1])*53
